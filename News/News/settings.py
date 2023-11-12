@@ -23,10 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3d3oweoyms6)xb_s%^r-qthgd^1=8t)y*rgpk#l40w!n%9e**o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
+#Для проверки своей страницы 404, конфигурация такая:
+# DEBUG = False
+# ALLOWED_HOSTS = ['*']
+#В режиме отладки - такая:
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -57,7 +60,7 @@ ROOT_URLCONF = 'News.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'all_apps/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    "home/static/",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
