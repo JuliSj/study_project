@@ -33,6 +33,7 @@ def index(request):
     }
     return render(request, 'main/index.html', context)
 
+
 def get_demo(request,a,operation,b):
     result = 0
     if operation == 'plus':

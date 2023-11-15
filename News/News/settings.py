@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'home',
+    'news_portal',
     'bootstrap5',
 ]
 
@@ -124,7 +125,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    "home/static/",
+    #"home/static/",
+    "news_portal/static/",
 ]
 
 # Default primary key field type
