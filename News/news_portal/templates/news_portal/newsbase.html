@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link href="{% static 'news_portal/' %}css/style.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="{% static 'news_portal/' %}lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -31,6 +31,10 @@
 {% block topbar %} {% include 'news_portal/topbar.html' %} {% endblock %}
 {% block navbar %} {% include 'news_portal/navbar.html' %} {% endblock %}
 {% block MainNewsSlider %} {% include 'news_portal/MainNewsSlider.html' %} {% endblock %}
+{% block BreakingNews %} {% include 'news_portal/BreakingNews.html' %} {% endblock %}
+{% block FeaturedNewsSlider %} {% include 'news_portal/FeaturedNewsSlider.html' %} {% endblock %}
+{% block NewsWithSidebar %} {% include 'news_portal/NewsWithSidebar.html' %} {% endblock %}
+{% block footer %} {% include 'news_portal/footer.html' %} {% endblock %}
 
 </body>
 
