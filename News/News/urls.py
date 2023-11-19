@@ -22,8 +22,8 @@ import main.views as main_views
 handler404 = main_views.custom_404
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
+    path('', include('news_portal.urls')),
     path('home/', include('home.urls')),
-    path('news_portal/', include('news_portal.urls')),
+    path('main/', include('main.urls')),
     #http://127.0.0.1:8000/
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

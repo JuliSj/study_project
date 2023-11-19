@@ -14,21 +14,23 @@
 
 <!--Сделано на основе примеров боковых меню с этой страницы: https://getbootstrap.com/docs/5.0/examples/sidebars/#-->
 <aside>
-    <div class="col-3">  <!--ширина 3 столбца из 12. высота указана в следующей строке: 100% высоты экрана -->
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+<!--    <div class="col-3">  &lt;!&ndash;ширина 3 столбца из 12. высота указана в следующей строке: 100% высоты экрана &ndash;&gt;-->
+<!--        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">-->
         <!--    Подробнее про flex-классы: https://bootstrap-4.ru/docs/4.0/utilities/flex/-->
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-              <img class="bi me-2" src="{% static 'main' %}/img/News_icon.png" width="40" height="50">
-              <span class="fs-4">Новости нашего города</span>
+              <img  src="{% static 'main' %}/img/News_icon.png" width="40" height="50">
+              <span class="fs-5 d-none d-lg-block responsive-title">Новости нашего города</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
         <!--          активная страница-->
-                <a href="/" class="nav-link active" aria-current="page">
-                    <i class="fa fa-house"></i>  Главная
+                <a href="/" class="link-active" aria-current="page">
+                    <i class="fa fa-house menu-icon link-active"></i>
+                    <div class="d-none d-lg-block">Главная</div>
                 </a>
               </li>
+
               <li>
                 <a href="#" class="nav-link text-white">
                     <i class="fa fa-bars"></i>   Все новости
@@ -72,8 +74,8 @@
               </ul>
             </div>
 
-        </div>
-      </div>
+<!--        </div>-->
+<!--      </div>-->
 
 
 </aside>
