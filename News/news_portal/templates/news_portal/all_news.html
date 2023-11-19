@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Все новости</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'news_portal/' %}lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'news_portal/' %}css/style.css" rel="stylesheet">
+</head>
+<body>
+
+{% include 'news_portal/navbar.html' %}
+
+    <br>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h4 class="m-0 text-uppercase font-weight-bold">Все новости</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-13.jpg" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">Экономика</a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Заголовок новости</a>
+                                    <p class="m-0">Краткий текст новости</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-14.jpg" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">Наука</a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Заголовок новости</a>
+                                    <p class="m-0">Краткий текст новости</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-15.jpg" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">Спорт</a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Заголовок новости</a>
+                                    <p class="m-0">Краткий текст новости</p>
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="col-lg-4">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-18.jpg" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">Политика</a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Заголовок новости</a>
+                                    <p class="m-0">Краткий текст новости</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-17.jpg" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">Здоровье</a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Заголовок новости</a>
+                                    <p class="m-0">Краткий текст новости</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-19.jpg" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="">Путешествия</a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">Заголовок новости</a>
+                                    <p class="m-0">Краткий текст новости</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% block footer %} {% include 'news_portal/footer.html' %} {% endblock %}
+
+</body>
+</html>
