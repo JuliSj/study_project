@@ -23,7 +23,17 @@ handler404 = main_views.custom_404
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('news_portal.urls')),
+    path('news1/', include('news1.urls')),
+    path('users/', include('users.urls')),
     path('home/', include('home.urls')),
     path('main/', include('main.urls')),
     #http://127.0.0.1:8000/
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug/__', include(debug_toolbar.urls)),
+    ] + urlpatterns
+
+    urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -22,8 +22,8 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                    <a href="{% url 'home' %}" {% if request.path == '/' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Главная</a>
-                    <a href="{% url 'all_news' %}" {% if request.path == '/all_news/' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Все новости</a>
+                    <a href="{% url 'home' %}" {% if request.resolver_match.view_name == 'home' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Главная</a>
+                    <a href="{% url 'news_index' %}" {% if request.resolver_match.view_name == 'all_news' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Все новости</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Пользователь</a>
                         <div class="dropdown-menu rounded-0 m-0">
