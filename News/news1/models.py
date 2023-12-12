@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 
 class Tag(models.Model):
@@ -20,16 +20,21 @@ class Article(models.Model):
                   ('Здоровье', 'Health'),
                   ('Путешествия', 'Travel'))
     #поля                                 #models.CASCADE  SET_DEFAULT
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='Автор')
     title = models.CharField('Название', max_length=50, default='')
     anouncement = models.TextField('Аннотация', max_length=250)
     text = models.TextField('Текст новости')
     date = models.DateTimeField('Дата публикации', auto_now=True)
     category = models.CharField(choices=categories, max_length=20, verbose_name='Категории')
-    tags = models.ManyToManyField(to=Tag, blank=True)
+    tags = models.ManyToManyField(to=Tag, blank=True, verbose_name='Тэги')
+    slug = models.SlugField()
     #Методы моделей
     def __str__(self):
         return f'{self.title} от: {str(self.date)[:16]}'
+
+    def get_absolute_url(self):
+        return f'/news1/{self.id}'
+
 
     # def tag_list(self):
     #     s = ''
@@ -37,10 +42,27 @@ class Article(models.Model):
     #         s += t.title + ' '
     #     return s
 
+    def image_tag(self):
+        image = Image.objects.filter(article=self)
+        if image:
+            return mark_safe(f'<img src="{image[0].image.url}" height="50px" width="auto"/>')
+        else:
+            return '(no image)'
     class Meta:
-        ordering = ['title','date']
+        ordering = ['date']
         verbose_name= 'Новость'
         verbose_name_plural='Новости'
 
+class Image(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50, blank=True)
+    image = models.ImageField(upload_to='article_images/')
 
+    def __str__(self):
+        return self.title
 
+    def image_tag(self):
+        if self.image is not None:
+            return mark_safe(f'<img src="{self.image.url}" height="50px" width="auto"/>')
+        else:
+            return '(no image)'

@@ -4,7 +4,7 @@
         <div class="row align-items-center bg-white py-3 px-lg-5">
             <div class="col-lg-4">
                 <a href="{% url 'home' %}" class="navbar-brand p-0 d-none d-lg-block">
-                    <h1 class="m-0 display-4 text-uppercase text-primary">Н<span class="text-secondary font-weight-normal">овости</span></h1>
+                    <h1 class="m-0 display-4 text-uppercase text-primary">Панель<span class="text-secondary font-weight-normal"> пользователя</span></h1>
                 </a>
             </div>
         </div>
@@ -23,9 +23,9 @@
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
                     <a href="{% url 'home' %}" {% if request.resolver_match.view_name == 'home' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Главная</a>
-                    <a href="{% url 'news_index' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Все новости</a>
-                    <a href="#" class="nav-item nav-link">Контакты</a>
-
+                    <a href="{% url 'news_index' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мой профиль</a>
+                    <a href="{% url 'news_index' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мои статьи</a>
+                    <a href="{% url 'logout' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Выход из аккаунта</a>
                     {% if request.user.id %}
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ request.user.username }}</a>
