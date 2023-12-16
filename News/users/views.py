@@ -9,6 +9,25 @@ from django.contrib.auth.models import Group
 def profile(request):
     return render(request, 'users/profile.html')
 
+from .forms import AccountUpdateForm, UserUpdateForm
+def profile_update(request):
+    user = request.user
+    account = Account.objects.get(user=user)
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=user)
+        account_form = AccountUpdateForm(request.POST, request.FILES, instance=account)
+        if user_form.is_valid() and account_form.is_valid():
+            user_form.save()
+            account_form.save()
+            messages.success(request,"Профиль успешно обновлен")
+            return redirect('profile')
+        else:
+            pass
+    else:
+        context = {'account_form':AccountUpdateForm(instance=account),
+                   'user_form':UserUpdateForm(instance=user)}
+    return render(request,'users/edit_profile.html',context)
+
 def registration(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

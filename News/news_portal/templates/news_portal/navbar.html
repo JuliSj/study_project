@@ -31,7 +31,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ request.user.username }}</a>
                         <div class="dropdown-menu rounded-0 m-0">
                             <a href="#" class="dropdown-item">Создать статью</a>
-                            <a href="/account/" class="dropdown-item">Мой аккаунт</a>
+                            <a href="{% url 'profile' %}" class="dropdown-item">Мой аккаунт</a>
                             <a href="{% url 'logout' %}" class="dropdown-item">Выход</a>
                         </div>
                     </div>

@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
                     <a href="{% url 'home' %}" {% if request.resolver_match.view_name == 'home' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Главная</a>
-                    <a href="{% url 'news_index' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мой профиль</a>
+                    <a href="{% url 'profile' %}" {% if request.resolver_match.view_name == 'profile' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мой профиль</a>
                     <a href="{% url 'news_index' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мои статьи</a>
                     <a href="{% url 'logout' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Выход из аккаунта</a>
                     {% if request.user.id %}
