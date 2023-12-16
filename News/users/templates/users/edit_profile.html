@@ -33,6 +33,8 @@
     <div class="text-center" style="margin-top:30px;">
         <h2>Редактирование профиля {{ request.user.username }}</h2>
         <br>
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
                 <div class="card">
@@ -123,14 +125,16 @@
                     <hr>
 
                     <div class="text-center">
-                        <a class="btn btn-outline-primary" style="margin-bottom:15px;"
-                           href="#">Сохранить изменения</a>
+                        <button class="btn btn-outline-primary" style="background-color: #fc0; color: #31404B; margin-bottom:15px;"
+                           href="{% url 'profile' %}"> Сохранить </button>
                     </div>
 
                 </div>
             </div>
         </div>
+        </form>
     </div>
+
 </div>
 
 </div>
