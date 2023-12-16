@@ -28,7 +28,7 @@ class ArticleImageInline(admin.TabularInline):
 class ArticleAdmin(admin.ModelAdmin):
     ordering = ['-date', 'title', 'author']
     list_display = ['title', 'author', 'date', 'symbols_count', 'image_tag']
-    list_filter = ['date', ArticleFilter]
+    list_filter = ['title', 'date', 'author', ArticleFilter]
     list_display_links = ('date',)
     search_fields = ['title__startswith', 'tags__title']
     filter_horizontal = ['tags']
