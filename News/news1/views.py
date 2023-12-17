@@ -6,6 +6,7 @@ from django.views.generic import DetailView, DeleteView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from .forms import *
+from users.utils import check_group # импортировали декоратор
 
 import json
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
@@ -24,6 +25,7 @@ def search_auto(request):
     return HttpResponse(data,mimetype)
 
 from .utils import ViewCountMixin
+
 class ArticleDetailView(ViewCountMixin, DetailView):
     model = Article
     template_name = 'news1/news_detail.html'
@@ -46,7 +48,7 @@ class ArticleDeleteView(DeleteView):
     success_url = reverse_lazy('news_index')
     template_name = 'news1/delete_article.html'
 
-from users.utils import check_group # импортировали декоратор
+
 @login_required(login_url=settings.LOGIN_URL)
 @check_group('Authors') # пример использования декоратора
 def create_article(request):

@@ -66,8 +66,12 @@
                 {% endif%}
 
                             <p>{{ article.text }}</p>
+                            {% if request.user.id %}
+                            {% if user.is_superuser == True %}
                             <a class="btn btn-warning" href="{% url 'news_delete' article.pk %}">Удалить</a>
                             <a class="btn btn-primary" href="{% url 'news_update' article.pk %}">Редактировать</a>
+                            {% endif %}
+                            {% endif %}
                     </div>
                 </div>
             </div>
