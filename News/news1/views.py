@@ -23,8 +23,8 @@ def search_auto(request):
     mimetype = 'application/json'
     return HttpResponse(data,mimetype)
 
-
-class ArticleDetailView(DetailView):
+from .utils import ViewCountMixin
+class ArticleDetailView(ViewCountMixin, DetailView):
     model = Article
     template_name = 'news1/news_detail.html'
     context_object_name = 'article'

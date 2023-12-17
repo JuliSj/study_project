@@ -100,6 +100,7 @@
                                     </div>
                                     <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{% url 'news_detail' article.pk %}">{{ article.title }}</a>
                                     <p class="lead my-3">{{ article.anouncement }}</p>
+                                    <p><small>Просмотры: {{ article.get_views }}</small></p>
                                     <p class="m-0">Автор: {{ article.author }}</p>
                                     <p class="m-0">Тэги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
                                 </div>
