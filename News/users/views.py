@@ -10,6 +10,9 @@ def profile(request):
     return render(request, 'users/profile.html')
 
 from .forms import AccountUpdateForm, UserUpdateForm
+from .utils import check_group # импортировали декоратор
+
+@check_group('Authors')
 def profile_update(request):
     user = request.user
     account = Account.objects.get(user=user)
