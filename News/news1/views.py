@@ -5,8 +5,16 @@ from django.db import connection, reset_queries
 from django.views.generic import DetailView, DeleteView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.core.paginator import Paginator
 from .forms import *
-from users.utils import check_group # импортировали декоратор
+
+def pagination(request):
+    articles = Article.objects.all()
+    p = Paginator(articles, 2)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    context = {'articles':page_obj}
+    return render(request, 'news1/all_news.html', context)
 
 import json
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
@@ -48,7 +56,7 @@ class ArticleDeleteView(DeleteView):
     success_url = reverse_lazy('news_index')
     template_name = 'news1/delete_article.html'
 
-
+from users.utils import check_group # импортировали декоратор
 @login_required(login_url=settings.LOGIN_URL)
 @check_group('Authors') # пример использования декоратора
 def create_article(request):
@@ -67,7 +75,6 @@ def create_article(request):
     else:
         form = ArticleForm()
     return render(request, 'news1/create_article.html', {'form':form})
-
 
 def all_news(request):
     #пример применения пользовательского менджера

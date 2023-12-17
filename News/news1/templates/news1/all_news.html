@@ -90,6 +90,27 @@
                             </div>
 
 
+<!--                            Пагинация не работает почему-то...-->
+                            <div class="row" style="margin: 0 8px;">
+                                <nav aria-label="Page navigation example">
+                                  <ul class="pagination">
+                                      {% if articles.has_previous %}
+                                          <li class="page-item"><a class="page-link" style="color:#31404B;" href="?page={{ news1.previous_page_number }}">Previous</a></li>
+                                      {% endif %}
+                                      {% for p in articles.paginator.page_range %}
+                                          {% if articles.number == p %}
+                                              <li class="page-item"><p class="page-link" style="color:black;">{{ p }}</p></li>
+                                          {% else %}
+                                              <li class="page-item"><a class="page-link" style="color:#31404B;" href="?page={{ p }}">{{ p }}</a></li>
+                                          {% endif %}
+                                      {% endfor %}
+                                      {% if articles.has_next %}
+                                          <li class="page-item"><a class="page-link" style="color:#31404B;" href="?page={{ news1.next_page_number }}">Next</a></li>
+                                      {% endif %}
+                                  </ul>
+                                </nav>
+                            </div>
+
                         {% for article in articles %}
                         <div class="col-lg-12">
                             <div class="position-relative mb-3">
