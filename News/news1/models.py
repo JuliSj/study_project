@@ -53,7 +53,7 @@ class Article(models.Model):
         return self.views.count()
 
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']
         verbose_name= 'Новость'
         verbose_name_plural='Новости'
 
