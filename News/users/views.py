@@ -32,12 +32,17 @@ def registration(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            category = request.POST['account_type']
+            if category == 'author':
+                group = Group.objects.get(name='Actions Required')
+                user.groups.add(group)
+            else:
+                group = Group.objects.get(name='Reader')
+                user.groups.add(group)
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username,password=password)
-            group = Group.objects.get(name='Authors')
-            user.groups.add(group)
             login(request, user)
             messages.success(request, f'{username} был зарегистрирован!')
             return redirect('home')
