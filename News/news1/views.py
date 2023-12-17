@@ -46,7 +46,9 @@ class ArticleDeleteView(DeleteView):
     success_url = reverse_lazy('news_index')
     template_name = 'news1/delete_article.html'
 
+from users.utils import check_group # импортировали декоратор
 @login_required(login_url=settings.LOGIN_URL)
+@check_group('Authors') # пример использования декоратора
 def create_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)

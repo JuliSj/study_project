@@ -10,9 +10,7 @@ def profile(request):
     return render(request, 'users/profile.html')
 
 from .forms import AccountUpdateForm, UserUpdateForm
-from .utils import check_group # импортировали декоратор
 
-@check_group('Authors')
 def profile_update(request):
     user = request.user
     account = Account.objects.get(user=user)
@@ -45,6 +43,7 @@ def registration(request):
                 user.groups.add(group)
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
+            account = Account.objects.create(user=user, nickname=user.username)
             user = authenticate(username=username,password=password)
             login(request, user)
             messages.success(request, f'{username} был зарегистрирован!')
