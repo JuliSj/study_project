@@ -23,3 +23,9 @@ class Account(models.Model):
         ordering = ['user']
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
+
+from news1.models import Article
+class FavoriteArticle(models.Model):
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    article = models.ForeignKey(Article,on_delete=models.SET_NULL,null=True)
+    create_at=models.DateTimeField(auto_now_add=True)

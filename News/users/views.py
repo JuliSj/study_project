@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect
 from .models import *
 from .forms import *
 from django.contrib.auth.forms import UserCreationForm
@@ -9,8 +9,22 @@ from django.contrib.auth.models import Group
 def profile(request):
     return render(request, 'users/profile.html')
 
-from .forms import AccountUpdateForm, UserUpdateForm
+from django.contrib.auth.decorators import login_required
+from news1.models import Article
+@login_required
+def add_to_favorites(request, id):
+    article = Article.objects.get(id=id)
+    # проверяем, есть ли такая закладка с этой новостью
+    bookmark = FavoriteArticle.objects.filter(user=request.user.id, article=article)
+    if bookmark.exists():
+        bookmark.delete()
+        messages.warning(request, f"Новость {article.title} удалена из закладок")
+    else:
+        bookmark = FavoriteArticle.objects.create(user=request.user, article=article)
+        messages.success(request, f"Новость {article.title} добавлена в закладки")
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
+from .forms import AccountUpdateForm, UserUpdateForm
 def profile_update(request):
     user = request.user
     account = Account.objects.get(user=user)
