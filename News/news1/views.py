@@ -8,14 +8,6 @@ from django.conf import settings
 from django.core.paginator import Paginator
 from .forms import *
 
-def pagination(request):
-    articles = Article.objects.all()
-    p = Paginator(articles, 2)
-    page_number = request.GET.get('page')
-    page_obj = p.get_page(page_number)
-    context = {'articles':page_obj}
-    return render(request, 'news1/all_news.html', context)
-
 import json
 #URL:    path('search_auto/', views.search_auto, name='search_auto'),
 def search_auto(request):
@@ -76,12 +68,13 @@ def create_article(request):
         form = ArticleForm()
     return render(request, 'news1/create_article.html', {'form':form})
 
-def all_news(request):
-    #пример применения пользовательского менджера
+
+def pagination(request):
     articles = Article.objects.all()
-    a = articles.first()
+
+def all_news(request):
+    articles = Article.objects.all()
     categories = Article.categories
-    context={'today_articles': articles}
     author_list = User.objects.all()
     selected = 0
     if request.method=="POST":
@@ -94,5 +87,8 @@ def all_news(request):
         print(connection.queries)
     else:
         articles = Article.objects.all()
-    context = {'articles': articles, 'author_list':author_list,'selected':selected,'categories':categories, }
+    p = Paginator(articles,2)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    context = {'articles': page_obj, 'author_list':author_list,'selected':selected,'categories':categories, }
     return render(request,'news1/all_news.html',context)
