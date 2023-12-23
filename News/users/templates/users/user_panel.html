@@ -27,7 +27,7 @@
                     <a href="{% url 'profile' %}" {% if request.resolver_match.view_name == 'profile' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мой профиль</a>
                     <a href="#" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Избранное</a>
                     {% if request.user|has_group:"Authors" %}
-                    <a href="#" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мои статьи</a>
+                    <a href="{% url 'my_news_list' %}" {% if request.resolver_match.view_name == 'my_news_list' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Мои статьи</a>
                     {% endif %}
                     <a href="{% url 'logout' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Выход из аккаунта</a>
                     {% if request.user.id %}

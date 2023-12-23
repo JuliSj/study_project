@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Мои статьи</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'news_portal/' %}lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'news_portal/' %}css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- jQuery !-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+<!-- jQuery UI !-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script>
+
+  $(function() {
+    $("#search_input").autocomplete({
+      source: "{% url 'search_auto' %}",
+      select: function (event, ui) { //item selected
+        AutoCompleteSelectHandler(event, ui)
+      },
+      minLength: 2,
+    });
+  });
+
+  function AutoCompleteSelectHandler(event, ui)
+  {
+    var selectedObj = ui.item;
+  }
+
+</script>
+
+
+{% include 'users/user_panel.html' %}
+
+    <br>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-12">
+
+
+<!--                                <div class="search">-->
+<!--                                  <label for="search_input">Поиск: </label>-->
+<!--                                  <input id="search_input">-->
+<!--                                        <button class="btn btn-primary">Найти</button>-->
+<!--                                </div>-->
+
+
+                            <div class="section-title">
+                                <h4 class="m-0 text-uppercase font-weight-bold">Мои статьи</h4>
+                            </div>
+<!--                            <div class="form-group col-12">-->
+
+<!--                            <form method="post">-->
+<!--                                {% csrf_token %}-->
+<!--                                <div class="input-group">-->
+<!--                                     <select class="form-select" name="author_filter" style="width:40%">-->
+<!--                                          <option value="0">Все авторы</option>-->
+<!--                                          {% for author in author_list %}-->
+<!--                                              <option value="{{ author.id }}" {% if selected == author.id %} selected {% endif %}> {{ author.username }}</option>-->
+<!--                                          {% endfor %}-->
+<!--                                     </select>-->
+<!--                                     <span class="input-group-btn">-->
+<!--                                         <input type="submit" class="btn" value="Применить" style="margin: 0 5px; background-color: #fc0; color: #31404B">-->
+<!--                                     </span>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                            </div>-->
+
+                            <div class="row" style="margin: 0 8px;">
+                                <nav aria-label="Page navigation example">
+                                  <ul class="pagination">
+                                      {% if articles.has_previous %}
+                                          <li class="page-item"><a class="page-link" style="color:#31404B;" href="?page={{ articles.previous_page_number }}">Previous</a></li>
+                                      {% endif %}
+                                      {% for p in articles.paginator.page_range %}
+                                          {% if articles.number == p %}
+                                              <li class="page-item"><p class="page-link" style="color:red;">{{ p }}</p></li>
+                                          {% else %}
+                                              <li class="page-item"><a class="page-link" style="color:#31404B;" href="?page={{ p }}">{{ p }}</a></li>
+                                          {% endif %}
+                                      {% endfor %}
+                                      {% if articles.has_next %}
+                                          <li class="page-item"><a class="page-link" style="color:#31404B;" href="?page={{ articles.next_page_number }}">Next</a></li>
+                                      {% endif %}
+                                  </ul>
+                                </nav>
+                            </div>
+
+                        {% for article in articles %}
+                        <div class="col-lg-12">
+                            <div class="position-relative mb-3">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                            href="#">{{ article.category }}</a>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{% url 'news_detail' article.pk %}">{{ article.title }}</a>
+                                    <p class="lead my-3">{{ article.anouncement }}</p>
+                                    <p><small>Просмотры: {{ article.get_views }}</small></p>
+                                    <a class="btn byn-success" href="{% url 'favorites' article.pk %}"><i class="fa fa-bookmark menu icon">В избранное</i></a>
+                                    <p class="m-0">Автор: {{ article.author }}</p>
+                                    <p class="m-0">Тэги: {% for t in article.tags.all %} {{ t.title }} {% endfor %}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% block footer %} {% include 'news_portal/footer.html' %} {% endblock %}
+
+</body>
+</html>

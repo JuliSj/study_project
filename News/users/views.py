@@ -85,3 +85,17 @@ def index(request):
     user_acc = Account.objects.get(user=request.user)
     print(user_acc, user_acc.birthdate, user_acc.gender)
     return HttpResponse('Приложение Users')
+
+from django.core.paginator import Paginator
+def my_news_list(request):
+    articles = Article.objects.all()
+    categories = Article.categories
+    author = User.objects.get(id=request.user.id)
+    selected = author.id
+    articles = Article.objects.filter(author=selected)
+
+    p = Paginator(articles,2)
+    page_number = request.GET.get('page')
+    page_obj = p.get_page(page_number)
+    context = {'articles': page_obj, 'selected':selected,'categories':categories, }
+    return render(request,'users/my_news_list.html',context)
