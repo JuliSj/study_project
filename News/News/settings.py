@@ -11,16 +11,20 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+import environ
+env = environ.Env()
+environ.Env.read_env()
+sc = env('SECRET_KEY')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3d3oweoyms6)xb_s%^r-qthgd^1=8t)y*rgpk#l40w!n%9e**o'
+SECRET_KEY = sc
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -60,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 INTERNAL_IPS = ['127.0.0.1',]
 ROOT_URLCONF = 'News.urls'
@@ -86,22 +91,22 @@ WSGI_APPLICATION = 'News.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default':
-      { 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'RealDjangoDb',
-        'USER': 'postgres',
-        'PASSWORD': 'Jsql2809',
-        'HOST': '127.0.0.1',
-        'PORT': '5432' }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default':
+#       { 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'RealDjangoDb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Jsql2809',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432' }
+# }
 
 
 # Password validation
@@ -127,6 +132,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'ru-RU' #'en-us'
+LANGUAGES = [
+    ('en',('English')),
+    ('ru',('Russian')),
+]
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 TIME_ZONE = 'UTC'
 

@@ -21,7 +21,7 @@ class Article(models.Model):
                   ('Путешествия', 'Travel'))
     #поля                                 #models.CASCADE  SET_DEFAULT
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='Автор')
-    title = models.CharField('Название', max_length=50, default='')
+    title = models.CharField('Название', max_length=150, default='')
     anouncement = models.TextField('Аннотация', max_length=250)
     text = models.TextField('Текст новости')
     date = models.DateTimeField('Дата публикации', auto_now=True)

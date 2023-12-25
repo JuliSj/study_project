@@ -16,7 +16,7 @@
   }
 
 </script>
-
+            {% load i18n %}
 
     <!-- Topbar Start -->
     {% load static %}
@@ -28,8 +28,17 @@
                     <h1 class="m-0 display-4 text-uppercase text-primary">Н<span class="text-secondary font-weight-normal">овости</span></h1>
                 </a>
             </div>
+
         </div>
+
+
+
     </div>
+
+
+
+
+
     <!-- Topbar End -->
 
     <!-- Navbar Start -->
@@ -82,5 +91,22 @@
                         {% endfor %}
                     {% endif %}
         </nav>
+
+<!--            <div class="dropdown default-dropdown">-->
+<!--                <form method="post" action="{% url 'selectlanguage' %}">-->
+<!--                    {% csrf_token %}-->
+<!--                    <select name="language" onchange="submit()">-->
+<!--                        {% get_current_language as LANGUAGE_CODE %}-->
+<!--                        {% get_available_languages as LANGUAGES %}-->
+<!--                        {% get_language_info_list for LANGUAGES as languages %}-->
+<!--                        {% for language in languages %}-->
+<!--                        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>-->
+<!--                            {{ language.name_local }} ({{language.code }})-->
+<!--                        </option>-->
+<!--                        {% endfor %}-->
+<!--                    </select>-->
+<!--                </form>-->
+<!--            </div>-->
+
     </div>
     <!-- Navbar End -->
