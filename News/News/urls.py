@@ -26,16 +26,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('selectlanguage/',main_views.selectlanguage, name='selectlanguage'),
     path('i18n/',include('django.conf.urls.i18n')),
-    ]
-
-urlpatterns += i18n.i18n_patterns(
     path('', include('news_portal.urls')),
     path('news1/', include('news1.urls')),
     path('users/', include('users.urls')),
     path('home/', include('home.urls')),
     path('main/', include('main.urls')),
-    #http://127.0.0.1:8000/
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # http://127.0.0.1:8000/
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
