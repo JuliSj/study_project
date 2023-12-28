@@ -43,8 +43,8 @@ class ContactForm(forms.Form):
                            validators=[MinLengthValidator(2)],
                            initial='Имя')
     email = forms.EmailField(validators=[russian_email])
-    message = forms.CharField(widget=forms.TextInput, disabled=True)
+    message = forms.CharField(widget=forms.TextInput)
     demo = forms.BooleanField(required=False,
                               help_text='Текст-подсказка',
-                              label='Вам нравится?',
+                              label='Вам нравится наш сайт?',
                               initial=True)

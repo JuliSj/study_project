@@ -54,7 +54,7 @@
                 <div class="navbar-nav mr-auto py-0">
                     <a href="{% url 'home' %}" {% if request.resolver_match.view_name == 'home' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Главная</a>
                     <a href="{% url 'news_index' %}" {% if request.resolver_match.view_name == 'news_index' %} class="nav-item nav-link active" {% else %} class="nav-item nav-link" {% endif %}>Все новости</a>
-                    <a href="#" class="nav-item nav-link">Контакты</a>
+                    <a href="{% url 'contact_page' %}" class="nav-item nav-link">Контакты</a>
 
                     {% if request.user.id %}
                     <div class="nav-item dropdown">
@@ -74,13 +74,20 @@
 
                 </div>
 
-                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
-                    <input id="search_input" type="text" class="form-control border-0" placeholder="Поиск">
-                    <div class="input-group-append">
-                        <button class="input-group-text bg-primary text-dark border-0 px-3"><i
-                                class="fa fa-search"></i></button>
-                    </div>
+
+
+                <div class="row">
+                    <form action="{% url 'search' %}" method="post">
+                        {% csrf_token %}
+                        <div class="search">
+                            <input id="search_input" name="search_input">
+                            <button type="submit" class="btn btn-primary" style="font-size:12px;">🔍︎</button>
+                        </div>
+                    </form>
                 </div>
+
+
+
             </div>
                             <br >
                     {% if messages %}

@@ -21,10 +21,35 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'news_portal/' %}css/style.css" rel="stylesheet">
-    {% block head %}{% endblock %}
 </head>
-
 <body>
+
+
+<!-- jQuery !-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+<!-- jQuery UI !-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script>
+
+  $(function() {
+    $("#search_input").autocomplete({
+      source: "{% url 'search_auto' %}",
+      select: function (event, ui) { //item selected
+        AutoCompleteSelectHandler(event, ui)
+      },
+      minLength: 2,
+    });
+  });
+
+  function AutoCompleteSelectHandler(event, ui)
+  {
+    var selectedObj = ui.item;
+  }
+
+</script>
+
 
 {% include 'news_portal/navbar.html' %}
 
@@ -36,25 +61,40 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="section-title">
-                                <h4 class="m-0 text-uppercase font-weight-bold">Наука и технологии, бизнес и инвестиции - всё самое актуальное на этом сайте</h4>
+                                <h4 class="m-0 text-uppercase font-weight-bold">Главные новости</h4>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="position-relative mb-3">
                                 <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-13.jpg" style="object-fit: cover;">
-
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <div class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2">Экономика</div>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="/news1/23">ИТ-КОМПАНИИ СТАЛИ ЧАЩЕ ПОДАВАТЬ ЗАЯВКИ НА ПАТЕНТ</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="position-relative mb-3">
                                 <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-14.jpg" style="object-fit: cover;">
-
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <div class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2">Наука</div>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="/news1/28">«РОСТЕЛЕКОМ» ПРОВЕЛ ПЕРВЫЙ ХАКАТОН ПО ИСКУССТВЕННОМУ ИНТЕЛЛЕКТУ</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="position-relative mb-3">
-                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/img.png" style="object-fit: cover;">
-
+                                <img class="img-fluid w-100" src="{% static 'news_portal/' %}img/pict-15.jpg" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <div class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2">Спорт</div>
+                                    </div>
+                                    <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="/news1/27">ТЕХНОЛОГИИ ДЛЯ РЕКОРДОВ: «РОСТЕЛЕКОМ» В ПЕТЕРБУРГЕ ПОСТРОИЛ ВОЛОКОННО-ОПТИЧЕСКУЮ ИНФРАСТРУКТУРУ ДЛЯ САМОГО БОЛЬШОГО ЛЕДОВОГО ДВОРЦА В МИРЕ</a>
+                                </div>
                             </div>
                         </div>
                     </div>

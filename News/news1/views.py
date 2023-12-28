@@ -92,3 +92,15 @@ def all_news(request):
     page_obj = p.get_page(page_number)
     context = {'articles': page_obj, 'author_list':author_list,'selected':selected,'categories':categories, }
     return render(request,'news1/all_news.html',context)
+
+def search(request):
+    if request.method == 'POST':
+        value = request.POST['search_input']
+        articles = Article.objects.filter(title__icontains=value)
+        if len(articles) == 1:
+            return render(request, 'news1/news_detail.html', {'article': articles[0]})
+        else:
+            request.session['search_input'] = value
+            return redirect('news_index')
+    else:
+        return redirect('home')
